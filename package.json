@@ -1,0 +1,75 @@
+{
+  "name": "cron-adapter",
+  "display_name": "Cron",
+  "version": "0.1.0",
+  "description": "Allows you to use cron expressions as a trigger",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tim-hellhake/cron-adapter.git"
+  },
+  "author": "Tim Hellhake",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/tim-hellhake/cron-adapter/issues"
+  },
+  "homepage": "https://github.com/tim-hellhake/cron-adapter#readme",
+  "files": [
+    "LICENSE",
+    "SHA256SUMS",
+    "lib/index.js",
+    "lib/cron-adapter.js"
+  ],
+  "moziot": {
+    "api": {
+      "min": 2,
+      "max": 2
+    },
+    "plugin": true,
+    "exec": "{nodeLoader} {path}",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "cronJobs": {
+          "type": "array",
+          "title": "A list of cron jobs",
+          "items": {
+            "type": "object",
+            "title": "A cron job",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "title": "The id of the cron job (will be generated for you)",
+                "readOnly": true
+              },
+              "name": {
+                "type": "string",
+                "title": "The name of the cron job"
+              },
+              "cron": {
+                "type": "string",
+                "title": "The cron expression (supports seconds, see https://www.npmjs.com/package/node-cron)"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@types/node-cron": "^2.0.2",
+    "node-cron": "^2.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.3",
+    "@types/node": "^12.7.2"
+  }
+}
