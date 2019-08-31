@@ -9,11 +9,12 @@ import { Adapter, Device, Event, Database } from 'gateway-addon';
 import crypto from 'crypto';
 
 import { schedule } from 'node-cron';
+import { Timezone } from 'tz-offset';
 
 const CRON_EVENT = 'fired';
 
 class CronDevice extends Device {
-    constructor(adapter: any, id: string, name: string, cron: string) {
+    constructor(adapter: any, id: string, name: string, cron: string, timezone: Timezone) {
         super(adapter, id);
         this['@context'] = 'https://iot.mozilla.org/schemas/';
         this.name = name;
@@ -28,7 +29,7 @@ class CronDevice extends Device {
 
         schedule(cron, () => {
             this.eventNotify(new Event(this, CRON_EVENT));
-        });
+        }, { timezone });
     }
 }
 
@@ -43,17 +44,20 @@ export class CronAdapter extends Adapter {
     }
 
     private async createCronJobs() {
-        const cronJobs = await this.loadCronJobs();
+        const {
+            timezone,
+            cronJobs
+        } = await this.loadConfig();
 
         if (cronJobs) {
             for (const cronJob of cronJobs) {
-                const cron = new CronDevice(this, cronJob.id, cronJob.name, cronJob.cron);
+                const cron = new CronDevice(this, cronJob.id, cronJob.name, cronJob.cron, timezone);
                 this.handleDeviceAdded(cron);
             }
         }
     }
 
-    private async loadCronJobs() {
+    private async loadConfig() {
         await this.database.open();
         const config = await this.database.loadConfig();
         const {
@@ -69,6 +73,6 @@ export class CronAdapter extends Adapter {
         }
 
         await this.database.saveConfig(config);
-        return cronJobs;
+        return config;
     }
 }
