@@ -179,28 +179,46 @@
             "Pacific/Tongatapu"
           ]
         },
-        "cronJobs": {
+        "cronGroups": {
           "type": "array",
-          "title": "A list of cron jobs",
+          "title": "A list of cron groups",
           "items": {
             "type": "object",
-            "title": "A cron job",
+            "title": "A cron group",
             "required": [
               "name"
             ],
             "properties": {
               "id": {
                 "type": "string",
-                "title": "The id of the cron job (will be generated for you)",
+                "title": "The id of the cron group (will be generated for you)",
                 "readOnly": true
               },
               "name": {
                 "type": "string",
-                "title": "The name of the cron job"
+                "title": "The name of the cron group"
               },
-              "cron": {
-                "type": "string",
-                "title": "The cron expression (supports seconds, see https://www.npmjs.com/package/node-cron)"
+              "cronJobs": {
+                "type": "array",
+                "title": "A list of cron jobs",
+                "items": {
+                  "type": "object",
+                  "title": "A cron job",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "pattern": "^[a-zA-Z]+$",
+                      "title": "The name of the cron job"
+                    },
+                    "cron": {
+                      "type": "string",
+                      "title": "The cron expression (supports seconds, see https://www.npmjs.com/package/node-cron)"
+                    }
+                  }
+                }
               }
             }
           }
