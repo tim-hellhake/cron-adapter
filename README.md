@@ -1,6 +1,6 @@
 # Cron adapter
 
-[![Build Status](https://travis-ci.org/tim-hellhake/cron-adapter.svg?branch=master)](https://travis-ci.org/tim-hellhake/cron-adapter)
+[![build](https://github.com/tim-hellhake/cron-adapter/workflows/Build/badge.svg)](https://github.com/tim-hellhake/cron-adapter/actions?query=workflow:Build)
 [![dependencies](https://david-dm.org/tim-hellhake/cron-adapter.svg)](https://david-dm.org/tim-hellhake/cron-adapter)
 [![devDependencies](https://david-dm.org/tim-hellhake/cron-adapter/dev-status.svg)](https://david-dm.org/tim-hellhake/cron-adapter?type=dev)
 [![optionalDependencies](https://david-dm.org/tim-hellhake/cron-adapter/optional-status.svg)](https://david-dm.org/tim-hellhake/cron-adapter?type=optional)
