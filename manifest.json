@@ -1,38 +1,22 @@
 {
-  "name": "cron-adapter",
-  "display_name": "Cron",
+  "manifest_version": 1,
+  "id": "cron-adapter",
+  "name": "Cron",
+  "short_name": "Cron",
   "version": "0.2.1",
   "description": "Allows you to use cron expressions as a trigger",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -p ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tim-hellhake/cron-adapter.git"
-  },
-  "author": "Tim Hellhake",
+  "homepage_url": "https://github.com/tim-hellhake/cron-adapter#readme",
   "license": "MPL-2.0",
-  "bugs": {
-    "url": "https://github.com/tim-hellhake/cron-adapter/issues"
+  "author": "Tim Hellhake",
+  "gateway_specific_settings": {
+    "webthings": {
+      "exec": "{nodeLoader} {path}",
+      "strict_min_version": "0.10.0",
+      "strict_max_version": "*",
+      "primary_type": "adapter"
+    }
   },
-  "homepage": "https://github.com/tim-hellhake/cron-adapter#readme",
-  "files": [
-    "LICENSE",
-    "SHA256SUMS",
-    "manifest.json",
-    "lib/index.js",
-    "lib/cron-adapter.js"
-  ],
-  "moziot": {
-    "api": {
-      "min": 2,
-      "max": 2
-    },
-    "plugin": true,
-    "exec": "{nodeLoader} {path}",
+  "options": {
     "schema": {
       "type": "object",
       "required": [
@@ -226,13 +210,5 @@
         }
       }
     }
-  },
-  "dependencies": {
-    "@types/node-cron": "^2.0.2",
-    "node-cron": "^2.0.3"
-  },
-  "devDependencies": {
-    "typescript": "^3.5.3",
-    "@types/node": "^12.7.2"
   }
 }
