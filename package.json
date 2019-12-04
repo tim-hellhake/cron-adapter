@@ -24,7 +24,8 @@
     "SHA256SUMS",
     "manifest.json",
     "lib/index.js",
-    "lib/cron-adapter.js"
+    "lib/cron-adapter.js",
+    "lib/config.js"
   ],
   "moziot": {
     "api": {
