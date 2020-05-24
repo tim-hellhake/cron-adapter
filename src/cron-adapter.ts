@@ -9,15 +9,13 @@ import { schedule } from 'node-cron';
 import { Timezone } from 'tz-offset';
 import { load, CronJobV2 } from './config';
 
-const CRON_EVENT = 'fired';
-
 class CronDevice extends Device {
     constructor(adapter: any, id: string, name: string, cronJobs: CronJobV2[], timezone: Timezone) {
         super(adapter, id);
         this['@context'] = 'https://iot.mozilla.org/schemas/';
         this.name = name;
 
-        for(const cronJob of cronJobs) {
+        for (const cronJob of cronJobs) {
             const {
                 name,
                 cron
@@ -30,9 +28,9 @@ class CronDevice extends Device {
                     type: 'string'
                 }
             });
-    
+
             schedule(cron, () => {
-                this.eventNotify(new Event(this, CRON_EVENT));
+                this.eventNotify(new Event(this, name));
             }, { timezone });
         }
     }
