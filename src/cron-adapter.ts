@@ -5,12 +5,11 @@
  */
 
 import { Adapter, Device, Event } from 'gateway-addon';
-import { schedule } from 'node-cron';
-import { Timezone } from 'tz-offset';
+import { CronJob } from 'cron';
 import { load, CronJobV2 } from './config';
 
 class CronDevice extends Device {
-    constructor(adapter: any, id: string, name: string, cronJobs: CronJobV2[], timezone: Timezone) {
+    constructor(adapter: any, id: string, name: string, cronJobs: CronJobV2[], timezone: string) {
         super(adapter, id);
         this['@context'] = 'https://iot.mozilla.org/schemas/';
         this.name = name;
@@ -29,9 +28,10 @@ class CronDevice extends Device {
                 }
             });
 
-            schedule(cron, () => {
+            new CronJob(cron, () => {
                 this.eventNotify(new Event(this, name));
-            }, { timezone });
+                console.log('Fire!');
+            }, null, true, timezone);
         }
     }
 }

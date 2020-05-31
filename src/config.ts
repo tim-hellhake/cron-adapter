@@ -4,12 +4,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.*
  */
 
-import { Timezone } from "tz-offset";
 import { Database } from "gateway-addon";
 import crypto from 'crypto';
 
 export interface Config {
-    timezone: Timezone,
+    timezone: string,
     cronJobs: CronJobV1[]
 }
 
@@ -20,7 +19,7 @@ export interface CronJobV1 {
 }
 
 export interface ConfigV2 {
-    timezone: Timezone,
+    timezone: string,
     cronGroups: CronGroup[]
 }
 

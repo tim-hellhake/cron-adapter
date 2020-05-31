@@ -229,11 +229,11 @@
     }
   },
   "dependencies": {
-    "node-cron": "^2.0.3"
+    "@types/cron": "^1.7.2",
+    "cron": "^1.8.2"
   },
   "devDependencies": {
     "@types/node": "^14.0.5",
-    "@types/node-cron": "^2.0.3",
     "typescript": "^3.9.3"
   }
 }
