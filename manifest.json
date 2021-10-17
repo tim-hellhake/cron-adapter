@@ -3,7 +3,7 @@
   "id": "cron-adapter",
   "name": "Cron",
   "short_name": "Cron",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Allows you to use cron expressions as a trigger",
   "homepage_url": "https://github.com/tim-hellhake/cron-adapter#readme",
   "license": "MPL-2.0",
@@ -200,7 +200,7 @@
                     },
                     "cron": {
                       "type": "string",
-                      "title": "The cron expression (e.g '* * * * *' for every minute, supports seconds, see https://www.npmjs.com/package/node-cron)"
+                      "title": "The cron expression (e.g. '* * * * *' for every minute, supports seconds, see https://www.npmjs.com/package/node-cron)"
                     }
                   }
                 }
