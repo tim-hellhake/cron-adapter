@@ -195,7 +195,7 @@
                   "properties": {
                     "name": {
                       "type": "string",
-                      "pattern": "^[a-zA-Z]+$",
+                      "pattern": "^[a-zA-Z0-9]+$",
                       "title": "The name of the cron job"
                     },
                     "cron": {
