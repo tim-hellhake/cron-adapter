@@ -9,7 +9,7 @@ import { CronJob } from 'cron';
 import { load, CronJobV2 } from './config';
 
 class CronDevice extends Device {
-    constructor(adapter: any, id: string, name: string, cronJobs: CronJobV2[], timezone: string) {
+    constructor(adapter: any, id: string, name: string, cronJobs: CronJobV2[], timezone: string, errorCallback: (error: string) => void) {
         super(adapter, id);
         this['@context'] = 'https://iot.mozilla.org/schemas/';
         this.name = name;
@@ -28,16 +28,20 @@ class CronDevice extends Device {
                 }
             });
 
-            new CronJob(cron, () => {
-                this.eventNotify(new Event(this, name));
-                console.log('Fire!');
-            }, null, true, timezone);
+            try { 
+                new CronJob(cron, () => {
+                    this.eventNotify(new Event(this, name));
+                    console.log('Fire!');
+                }, null, true, timezone);
+            } catch (e) {
+                errorCallback(`Failed to create cron job for '${cron}': ${e}`);
+            }
         }
     }
 }
 
 export class CronAdapter extends Adapter {
-    constructor(addonManager: any, manifest: any) {
+    constructor(addonManager: any, manifest: any, private errorCallback: (error: string) => void) {
         super(addonManager, CronAdapter.name, manifest.name);
         addonManager.addAdapter(this);
         this.createCronJobs(manifest);
@@ -56,7 +60,8 @@ export class CronAdapter extends Adapter {
                     name,
                     cronJobs
                 } = cronGroup;
-                const cron = new CronDevice(this, id, name, cronJobs, timezone);
+
+                const cron = new CronDevice(this, id, name, cronJobs, timezone, this.errorCallback);
                 this.handleDeviceAdded(cron);
             }
         }

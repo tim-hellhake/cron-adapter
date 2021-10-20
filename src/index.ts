@@ -6,4 +6,4 @@
 
 import { CronAdapter } from './cron-adapter';
 
-export = (addonManager: any, manifest: any) => new CronAdapter(addonManager, manifest);
+export = (addonManager: any, manifest: any, errorCallback: (packageName: string, error: string) => void) => new CronAdapter(addonManager, manifest, (error: string) => errorCallback('cron-adapter', error));
