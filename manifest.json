@@ -200,6 +200,7 @@
                     },
                     "cron": {
                       "type": "string",
+                      "pattern": "^\\S+ \\S+ \\S+ \\S+ \\S+( \\S+)?$",
                       "title": "The cron expression (e.g. '* * * * *' for every minute, supports seconds, see https://www.npmjs.com/package/node-cron)"
                     }
                   }
