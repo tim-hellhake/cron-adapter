@@ -28,11 +28,11 @@
     "lib/config.js"
   ],
   "dependencies": {
-    "@types/cron": "^1.7.2",
-    "cron": "^1.8.2"
+    "@types/cron": "^1.7.3",
+    "cron": "^1.8.3"
   },
   "devDependencies": {
-    "@types/node": "^14.0.6",
-    "typescript": "^3.9.3"
+    "@types/node": "^14.18.63",
+    "typescript": "^4.9.5"
   }
 }
